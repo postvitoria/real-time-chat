@@ -18,6 +18,21 @@ const socket = io({
 	}
 });
 
+function openAppWindow() {
+	const socialWindow = document.querySelector('.social-window');
+	const shopWindow = document.querySelector('.shop-window');
+		
+	if (socialWindow != null) {
+		socialWindow.style.display = 'none';
+		document.querySelector(".chat-container").style.display = "block";
+	}
+
+	if (shopWindow != null) {
+		shopWindow.style.display = 'none';
+		document.querySelector(".chat-container").style.display = "block";
+	}
+}
+
 function filterContacts() {
 	var searchText = document.querySelector('.input').value.toUpperCase();
 	var contacts = document.querySelectorAll('.contact-item');
@@ -135,15 +150,10 @@ socket.on('getUserFriends', async (friends) => {
 		ionicon.id = friend.id;
 
 		contactItem.addEventListener('click', (event) => {
+			openAppWindow()
+
 			if (lastContact == contactItem.id) {
 				return;
-			}
-
-			const socialContainer = document.querySelector('.social-window');
-		
-			if (socialContainer != null) {
-				socialContainer.style.display = 'none';
-				document.querySelector(".chat-container").style.display = "block";
 			}
 
 			lastContact = contactItem.id;
@@ -287,13 +297,8 @@ messageInput.addEventListener("keyup", function (event) {
 document.addEventListener("keyup", function (event) {
 	if (event.key === "Escape") {
 		event.preventDefault()
-	
-		const socialContainer = document.querySelector('.social-window');
 		
-		if (socialContainer != null) {
-			socialContainer.style.display = 'none';
-			document.querySelector(".chat-container").style.display = "block";
-		}
+		openAppWindow()
 	}
 });
 
@@ -301,9 +306,19 @@ document.addEventListener('DOMContentLoaded', function() {
 	const chatBoxAI = document.getElementById("chatbotai");
 	const addfriends = document.getElementById("add-friend-button");
 	const socialContainer = document.querySelector('.social-window');
+	const openshop = document.getElementById("open-shop-button");
+	const shopWindow = document.querySelector('.shop-window');
 
 	addfriends.addEventListener('click', function () {
+		openAppWindow()
+
         socialContainer.style.display = 'block';
+		document.querySelector(".chat-container").style.display = "none";
+    });
+	openshop.addEventListener('click', function () {
+		openAppWindow()
+
+        shopWindow.style.display = 'block';
 		document.querySelector(".chat-container").style.display = "none";
     });
 
@@ -318,10 +333,12 @@ document.addEventListener('DOMContentLoaded', function() {
 	socket.emit('client connect', token.userData.id);
 
 	chatBoxAI.addEventListener('click', (event) => {
+		openAppWindow()
+		
 		if (lastContact == "chatbotai") {
 			return;
 		}
-		
+
 		lastContact = "chatbotai";
 		loadProfile("Dreikyzz AI", chatBoxAI.querySelector("img").src, "AI");
 		socket.emit('loadMessages', token.userData.id, "chatbotai");

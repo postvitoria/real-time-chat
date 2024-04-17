@@ -443,6 +443,18 @@
     align-items: center; /* Centramos verticalmente los elementos */
 }
 
+.shop-window {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 60%;
+    height: 100%;
+    margin-left: 20%;
+    position: absolute;
+    overflow-y: auto;
+}
+
 @keyframes fadeInDown {
     from {
       opacity: 0;
