@@ -1,0 +1,491 @@
+* {
+    font-family: Helvetica, Arial, sans-serif; /* Establece la fuente Helvetica como la primera opción */
+    overflow-x: hidden;
+}
+
+.contacts-slidebar {
+    left: 0;
+    top: 0;
+    width: 20%;
+    height: 100%;
+    position: absolute;
+    background-color: #ECECEC;
+    /* overflow-y: auto; */
+}
+
+.contacts-slidebar header {
+    position: relative;
+    height: 100px;
+    display: flex; /* Utilizamos flexbox para centrar verticalmente los elementos */
+    align-items: center; /* Centramos verticalmente los elementos */
+}
+
+.profile-self-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+    margin-right: 15px; /* Agregamos margen derecho para separar la imagen del nombre de usuario */
+    margin-left: 25px;
+    user-select: none;
+    cursor: pointer;
+}
+
+.profile-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-self-username {
+    color: #0093FF;
+    font-size: 20px; /* Tamaño de fuente para el nombre de usuario */
+    font-weight: bold;
+    max-width: 200px; /* Establece el ancho máximo del span */
+    overflow: hidden; /* Oculta el texto que supere el ancho máximo */
+    text-overflow: ellipsis; /* Muestra puntos suspensivos (...) para el texto que se ha cortado */
+    white-space: nowrap; /* Evita que el texto se divida en múltiples líneas */
+}
+
+.profile-self-desc {
+    color: #808080;
+    font-size: 15px; /* Tamaño de fuente para el nombre de usuario */
+    max-width: 200px; /* Establece el ancho máximo del span */
+    overflow: hidden; /* Oculta el texto que supere el ancho máximo */
+    text-overflow: ellipsis; /* Muestra puntos suspensivos (...) para el texto que se ha cortado */
+    white-space: nowrap; /* Evita que el texto se divida en múltiples líneas */
+}
+
+.profile-self-status {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    background-color: green;
+    margin-left: 70px;
+    margin-top: 45px;
+}
+
+.profile-buttons-container {
+    display: flex;
+    height: 40px;
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    user-select: none;
+}
+
+.profile-button {
+    position: relative;
+    font-size: 1.5rem;
+    color: #0093FF;
+    cursor: pointer;
+    margin-right: 25px;
+}
+
+/* Search input */
+
+.group {
+    margin: auto;
+    display: flex;
+    line-height: 28px;
+    align-items: center;
+    position: relative;
+    max-width: 250px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.add-friend-group {
+    margin: auto;
+    display: flex;
+    line-height: 28px;
+    align-items: center;
+    position: relative;
+    max-width: 80%;
+    margin-top: 25px;
+    margin-bottom: 20px;
+}
+
+.input {
+    width: 100%;
+    height: 40px;
+    line-height: 28px;
+    padding: 0 1rem;
+    padding-left: 2.5rem;
+    border: 2px solid transparent;
+    border-radius: 20px;
+    outline: none;
+    background-color: #f3f3f4;
+    color: #0d0c22;
+    transition: 0.3s ease;
+}
+
+.input::placeholder {
+    color: #9e9ea7;
+}
+
+.add-friend-input {
+    width: 100%;
+    height: 40px;
+    line-height: 28px;
+    padding: 0 1rem;
+    padding-left: 2.5rem;
+    border: 2px solid transparent;
+    border-radius: 20px;
+    outline: none;
+    background-color: #f3f3f4;
+    color: #0d0c22;
+    transition: 0.3s ease;
+}
+
+.friends-input::placeholder {
+    color: #9e9ea7;
+}
+
+.icon {
+    position: absolute;
+    left: 1rem;
+    fill: #9e9ea7;
+    width: 1rem;
+    height: 1rem;
+}
+  
+/* End Search Input */
+
+.contact-list {
+    list-style: none; /* Elimina los estilos de lista predeterminados */
+    overflow-y: auto; /* Agrega una barra de desplazamiento vertical cuando sea necesario */
+    padding: 0;
+}
+
+.contact-item {
+    display: flex; /* Utilizamos flexbox para alinear los elementos horizontalmente */
+    padding: 10px; /* Agrega un espacio entre los elementos */
+}
+
+.contact-item:hover {
+    background-color: #ccc;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.contact-item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    margin-right: 15px; /* Agrega margen derecho para separar la imagen del texto */
+    user-select: none;
+}
+
+.contact-details {
+    flex: 1; /* El elemento ocupa todo el espacio disponible */
+    display: flex; /* Utilizamos flexbox para centrar verticalmente el texto */
+    flex-direction: column; /* Cambia la dirección de los elementos a columnas */
+}
+
+.contact-name {
+    color: #0093FF;
+    font-weight: bold;
+    overflow: hidden; /* Oculta el texto que supere el ancho máximo */
+    text-overflow: ellipsis; /* Muestra puntos suspensivos (...) para el texto que se ha cortado */
+}
+
+.contact-desc {
+    color: #808080;
+    overflow: hidden; /* Oculta el texto que supere el ancho máximo */
+    max-width: 200px; /* Establece el ancho máximo del span */
+    overflow: hidden; /* Oculta el texto que supere el ancho máximo */
+    text-overflow: ellipsis; /* Muestra puntos suspensivos (...) para el texto que se ha cortado */
+    white-space: nowrap; /* Evita que el texto se divida en múltiples líneas */
+    font-size: 14px;
+}
+
+.contact-icon {
+    font-weight: bold;
+    color: #0093FF;
+}
+
+.chat-container {
+    left: 0;
+    top: 0;
+    width: 60%;
+    height: 100%;
+    margin-left: 20%;
+    position: absolute;
+    overflow-y: hidden;
+}
+
+.messages-continer {
+    position: relative;
+    height: 72.5%;
+}
+
+.chat-container header {
+    position: relative;
+    width: 100%;
+    height: 100px;
+    border-bottom: 2px solid #f3f3f4;
+    align-items: center;
+    display: flex; /* Utilizamos flexbox para centrar verticalmente los elementos */
+    align-items: center; /* Centramos verticalmente los elementos */
+}
+
+.chat-header-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    margin-left: 35px; /* Agrega margen derecho para separar la imagen del texto */
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.chat-header-name {
+    font-weight: bold;
+    font-size: 20px;
+    max-width: 300px; /* Establece el ancho máximo del span */
+    overflow: hidden; /* Oculta el texto que supere el ancho máximo */
+    text-overflow: ellipsis; /* Muestra puntos suspensivos (...) para el texto que se ha cortado */
+    white-space: nowrap; /* Evita que el texto se divida en múltiples líneas */
+}
+
+.chat-header-status {
+    width: 15px;
+    height: 15px;
+    border-radius: 20px;
+    margin-left: 25px;
+    background-color: rgb(4, 183, 4);
+}
+
+.chat-header-status-ai {
+    width: 30px;
+    height: 20PX;
+    border-radius: 5px;
+    margin-left: 10px;
+    background-color: #0093FF;
+    color: white;
+    display: flex; /* Para habilitar el uso de flexbox */
+    justify-content: center; /* Para centrar horizontalmente */
+    align-items: center; /* Para centrar verticalmente */
+    user-select: none;
+}
+
+.chat-container footer {
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+    height: 13%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    border-top: 2px solid #f3f3f4;
+}
+
+/* Message input */
+
+.message-group {
+    margin: auto;
+    display: flex;
+    line-height: 28px;
+    align-items: center;
+    position: relative;
+    max-width: 550px;
+    margin-top: 25px;
+}
+
+.message-input {
+    width: 100%;
+    height: 40px;
+    line-height: 28px;
+    padding: 0 1rem;
+    padding-left: 3rem;
+    border: 2px solid transparent;
+    border-radius: 20px;
+    outline: none;
+    background-color: #f3f3f4;
+    color: #0d0c22;
+    transition: 0.3s ease;
+}
+
+.message-input::placeholder {
+    color: #9e9ea7;
+}
+
+.message-input-icon-left {
+    position: absolute;
+    left: 1rem;
+    color: #9e9ea7;
+    width: 1.2rem;
+    height: 1.2rem;
+    cursor: pointer;
+}
+
+.message-input-icon-right {
+    position: absolute;
+    right: 3rem;
+    color: #9e9ea7;
+    width: 1.4rem;
+    height: 1.4rem;
+    cursor: pointer;
+}
+
+/* End Message Input */
+
+.message-container {
+    width: 100%;
+    margin: 2px 2px; /* Ajuste aquí para un espaciado uniforme */
+    transition: 1s;
+    clear: both; /* Agregado para evitar la disposición en línea */
+    animation: fadeInUp 0.5s ease-in-out forwards;
+}
+
+.message-container:first-child {
+    margin-top: 15px;
+}
+
+.message-user-icon {
+    width: 35px;
+    height: 35px;
+    border-radius: 20px;
+    margin-right: 0; 
+    margin-left: 20px;
+    float: left;
+    user-select: none;
+}
+
+.message {
+    background-color: #0093FF;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    max-width: 500px;
+    word-wrap: break-word;
+    display:inline-block;
+    opacity: 0;
+    animation: fadeInUp 0.5s ease-in-out forwards;
+}
+
+.message p {
+    color: white;
+    margin: 0;
+    font-size: 14px;
+    max-width: 250px;
+}
+
+.message-container.yours .message {
+    margin-left: 0; 
+    margin-right: 20px;
+    float: right;
+}
+
+.send-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #0093FF;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex; /* Para habilitar el uso de flexbox */
+    justify-content: center; /* Para centrar horizontalmente */
+    align-items: center; /* Para centrar verticalmente */
+    cursor: pointer;
+}
+
+.send-button ion-icon{
+    color: white; /* Color del icono */
+    font-size: 1rem; /* Tamaño del icono */
+}
+
+.profile-container {
+    top: 0;
+    right: 0;
+    position: absolute;
+    width: 20%;
+    height: 100%;
+    background-color: #ECECEC;
+}
+
+.profile-container header {
+    border: 2px solid black;
+    height: 220px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    user-select: none;
+}
+
+.right-profile-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.social-window {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 60%;
+    height: 100%;
+    margin-left: 20%;
+    position: absolute;
+    overflow-y: hidden;
+}
+
+.social-window header {
+    position: relative;
+    width: 100%;
+    height: 100px;
+    border-bottom: 2px solid #f3f3f4;
+    align-items: center;
+    display: flex; /* Utilizamos flexbox para centrar verticalmente los elementos */
+    align-items: center; /* Centramos verticalmente los elementos */
+}
+
+@keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+    opacity: 0;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #fff;
+    border-radius: 50px;
+    height: 50%;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 50px;
+    background-color: #0093FF;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}

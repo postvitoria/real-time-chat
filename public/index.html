@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles/main-style.css">
+    <title>Dreikyzz Chat</title>
+</head>
+<body>
+	<div class="main-chat-container">
+		<div class="contacts-slidebar">
+			<header>
+				<img class="profile-self-img" src="media/img/default.jpg">
+				<!-- <div class="profile-self-status"></div> -->
+
+				<div class="profile-details">
+					<span class="profile-self-username">Johnny</span>
+					<span class="profile-self-desc">Aqui chilli'n</span>
+				</div>
+			</header>
+	
+			<div class="profile-buttons-container">
+				<ion-icon name="gift-outline" class="profile-button"></ion-icon>
+				<ion-icon name="person-outline" class="profile-button" id="add-friend-button"></ion-icon>
+				<ion-icon name="settings-outline" class="profile-button"></ion-icon>
+			</div>
+
+			<div class="group">
+				<svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
+					<g>
+						<path
+							d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"
+						></path>
+					</g>
+				</svg>
+
+				<input class="input" type="search" placeholder="Search Contact" oninput="filterContacts()">
+			</div>
+			
+			<ul class="contact-list">
+				<li class="contact-item" id="chatbotai"> 
+					<img src="https://avatarfiles.alphacoders.com/368/368659.jpeg">
+			
+					<div class="contact-details">
+						<span class="contact-name">Dreikyzz AI</span>
+						<span class="contact-desc">Welcome! Im here to help you! :D</span>
+					</div>
+
+					<!-- <div style="position: relative; width: 15px; height: 15px; border-radius: 20px; background-color: #0093FF; color: white; font-size: 12px; text-align: center;">1</div>
+					<ion-icon class="contact-icon" name="ellipsis-vertical-outline"></ion-icon> -->
+				</li>
+				<!-- Resto de los elementos de lista -->
+			</ul>			
+		</div>
+
+		<div class="chat-container">
+			<header>
+				<img src="https://avatarfiles.alphacoders.com/368/368659.jpeg" class="chat-header-img">
+				<span class="chat-header-name">Dreikyzz AI</span>
+				<div class="chat-header-status-ai" id="ai-status">AI</div>
+			</header>
+
+			<div class="messages-continer">
+
+			</div>
+
+			<footer>
+				<div class="message-group">
+					<ion-icon name="attach-outline" class="message-input-icon-left"></ion-icon>
+					<ion-icon name="happy-outline" class="message-input-icon-right"></ion-icon>
+					
+					<input class="message-input" type="search" placeholder="Write a message">
+					
+					<div class="send-button">
+						<ion-icon name="send"></ion-icon>
+					</div>
+				</div>
+			</footer>
+		</div>
+
+		<div class="profile-container">
+			<!-- <header>
+				<img class="right-profile-avatar" src="https://i.pinimg.com/564x/91/3c/d8/913cd83e858388ae4c38be5c73952cd3.jpg">
+				<span class="right-profile-username">Tupu</span>
+				<span class="right-profile-status">Tamadre</span>
+			</header> -->
+		</div>
+	</div>
+
+	<div class="social-window">
+		<header>
+
+		</header>
+
+		<div class="add-friend-group">				
+			<input class="add-friend-input" type="search" placeholder="Search user by their username">
+			
+			<div class="send-button">
+				<ion-icon name="send"></ion-icon>
+			</div>
+		</div>
+	</div>
+
+	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="app.js"></script>
+	</body>
+</html>

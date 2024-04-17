@@ -1,0 +1,23 @@
+{
+    "name": "socket-chat-example",
+    "version": "0.0.1",
+    "description": "my first socket.io app",
+    "type": "commonjs",
+    "scripts": {
+        "dev": "nodemon index.js"
+    },
+    "dependencies": {
+        "@socket.io/admin-ui": "^0.5.1",
+        "@socket.io/cluster-adapter": "^0.2.2",
+        "axios": "^1.6.8",
+        "bcrypt": "^5.1.1",
+        "consolidate": "^1.0.3",
+        "express": "^4.19.1",
+        "mustache": "^4.2.0",
+        "mysql2": "^3.9.2",
+        "openai": "^3.3.0",
+        "socket.io": "^4.7.5",
+        "sqlite": "^5.1.1",
+        "sqlite3": "^5.1.7"
+    }
+}

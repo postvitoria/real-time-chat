@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="styles/login-style.css">
+
+        <title>Dreikyzz Login Page</title>
+    </head>
+
+    <body>
+        <section>
+            <div class="signin">
+                <div class="content">
+                    <h2>login</h2>
+                    <form id="signinForm" class="form" method="post">
+                        <span class="message"></span>
+                        <div class="inputBx">
+                            <input type="text" name="username" id="username" required>
+                            <i>Username</i>
+                        </div>
+                        <div class="inputBx">
+                            <input type="password" name="password" id="password" required>
+                            <i>Password</i>
+                        </div>
+                        <div class="links">
+                            <a href="recpasswd">Forgot passwd</a>
+                            <a href="signup">Signup</a>
+                        </div>
+                        <div class="inputBx">
+                            <input type="submit" value="Submit">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <script>
+            var sleepSetTimeout_ctrl;
+            var submitted = false; 
+
+            function sleep(ms) {
+                clearInterval(sleepSetTimeout_ctrl);
+                return new Promise(resolve => sleepSetTimeout_ctrl = setTimeout(resolve, ms));
+            }
+
+            document.getElementById('signinForm').addEventListener('submit', async (event) => {
+                event.preventDefault();
+
+                if (submitted) {
+                    return;
+                }
+
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                const notify   = document.querySelector('.message');
+
+                try {
+                    const response = await fetch('/login', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ username: username, password: password })
+                    });
+
+                    const message = await response.json();
+                    submitted = true;
+
+                    notify.textContent = message["message"];
+                    await sleep(2500).then(function() {notify.textContent = ""; submitted = false});
+
+                    if (message.logged == true) {
+                        const userData = {
+                            userData: message.user,
+                            friends: message.friends
+                        };
+
+                        localStorage.setItem('sessionToken', JSON.stringify(userData));
+                        window.location.href = "/";
+                    }
+                } catch (error) {
+                    console.log(error);
+                }
+            });
+    </script>
+    </body>
+</html>

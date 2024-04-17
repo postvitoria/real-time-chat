@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="styles/signup-style.css">
+
+        <title>Dreikyzz Signup Page</title>
+    </head>
+
+    <body>
+        <section>
+            <div class="signin">
+                <div class="content">
+                    <h2>signup</h2>
+                    <form id="signupForm" class="form" method="post">
+                        <span class="message"></span>                      
+                        <div class="inputBx">
+                            <input type="text" name="username" id="username" required>
+                            <i>Username</i>
+                        </div>
+                        <div class="inputBx">
+                            <input type="text" name="email" id="email" required>
+                            <i>Email</i>
+                        </div>
+                        <div class="inputBx">
+                            <input type="password" name="password" id="password" required>
+                            <i>Password</i>
+                        </div>
+                        <div class="inputBx">
+                            <input type="password" name="rpassword" id="rpassword" required>
+                            <i>Repeat Password</i>
+                        </div>
+                        <div class="links">
+                            <a href="#">Support</a>
+                            <a href="login">Login</a>
+                        </div>
+                        <div class="inputBx">
+                            <input type="submit" value="Submit">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </body>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const signupForm = document.getElementById('signupForm');
+
+            signupForm.addEventListener('submit', async (event) => {
+                event.preventDefault();
+
+                // Obtener los valores del formulario
+                const username = document.getElementById('username').value;
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                const rpassword = document.getElementById('rpassword').value;
+                const message = document.querySelector('.message');
+
+                // Validar la contraseña
+                if (password.length < 8 || !/[A-Z]/.test(password) || !/\d/.test(password)) {
+                    message.textContent = "The password must be at least 8 characters, a capital letter and a number";
+                    event.preventDefault(); // Evitar que el formulario se envíe
+                    return;
+                }
+
+                // Verificar si las contraseñas coinciden
+                if (password !== rpassword) {
+                    message.textContent = "Passwords do not match";
+                    event.preventDefault(); // Evitar que el formulario se envíe
+                    return;
+                }
+
+                try {
+                    const response = await fetch('/signup', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ username: username, email: email, password:password })
+                    });
+
+                    const message = await response.json();
+                    console.log(message);
+                    document.querySelector('.message').textContent = message["message"];
+
+                    if (message.logged == true) {
+                        const userData = {
+                            username: username,
+                        };
+
+                        localStorage.setItem('sessionToken', JSON.stringify(userData));
+                        window.location.href = "/login";
+                    }
+                } catch (error) {
+                    //console.log(error);
+                }
+            });
+        });
+    </script>
+</html>
