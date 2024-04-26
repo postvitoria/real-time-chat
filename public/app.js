@@ -6,6 +6,7 @@ const messageInput = document.querySelector(".message-input");
 const audio = new Audio('media/audio/notification.mp3');
 
 let lastContact;
+let contactsNotifications = {};
 
 if (token == null) {
 	window.location.href = "login"
@@ -17,6 +18,10 @@ const socket = io({
 		userData: token.userData
 	}
 });
+
+function OnContactsLoaded () {
+	socket.emit('getNonReadedMessages', token.userData.id);
+}
 
 function openAppWindow() {
 	const socialWindow = document.querySelector('.social-window');
@@ -150,10 +155,16 @@ socket.on('getUserFriends', async (friends) => {
 		ionicon.id = friend.id;
 
 		contactItem.addEventListener('click', (event) => {
+			let notification = contactItem.querySelector(".contact-notification");
 			openAppWindow()
 
 			if (lastContact == contactItem.id) {
 				return;
+			}
+
+			if (notification != null) {
+				notification.remove();
+				socket.emit("readMessages", token.userData.id, contactItem.id)
 			}
 
 			lastContact = contactItem.id;
@@ -167,12 +178,34 @@ socket.on('getUserFriends', async (friends) => {
 			// Agrega el código que deseas ejecutar al hacer clic en el icono aquí
 		});
 	});
+	
+	OnContactsLoaded()
 });
 
 socket.on('getUserGroups', async (groups) => {
 	groups.forEach(group => {
 		
 	});
+});
+
+socket.on('getNonReadedMessages', async (messages) => {	
+	for (let i = 0; i < messages.length; i++) {
+		const userContact = document.getElementById(messages[i].sender);
+		let notification = userContact.querySelector(".contact-notification");
+
+		if (notification == null) {
+			notification = document.createElement("div");
+			notification.classList.add("contact-notification");
+			userContact.appendChild(notification);
+		}
+
+		contactsNotifications[messages[i].sender] = i;
+		notification.textContent = contactsNotifications[messages[i].sender] + 1;
+
+		if (contactsNotifications[messages[i].sender] > 9) {
+			notification.textContent = "9+";
+		}
+	}
 });
 
 socket.on('requestUserData', async (userData) => {
@@ -216,8 +249,23 @@ socket.on('chat receive', async (sender, content) => {
 		createMessage(message)
 	} else if (sender != token.userData.id) {
 		const userContact = document.getElementById(sender);
-		const notification = document.createElement("div");
-		
+		let notification = userContact.querySelector(".contact-notification");
+
+		if (notification == null) {
+			notification = document.createElement("div");
+			notification.classList.add("contact-notification");
+			userContact.appendChild(notification);
+
+			contactsNotifications[sender] = 1;
+		} else {
+			contactsNotifications[sender] = contactsNotifications[sender] + 1;
+		}
+	
+		if (contactsNotifications[sender] > 9) {
+			contactsNotifications[sender] = "9+"
+		}
+
+		notification.textContent = contactsNotifications[sender]
 		audio.play();
 	}
 });
@@ -229,7 +277,7 @@ socket.on('ai response', async (content) => {
 	message.receiver = token.userData.id;
 
 	createMessage(message)
-	//socket.emit('chat message', "chatbotai", message.receiver, message.content);
+	//socket.emit('message.sender', "chatbotai", message.receiver, message.content);
 });
 
 socket.on('client connect', async (userConnected) => {
@@ -315,6 +363,7 @@ document.addEventListener('DOMContentLoaded', function() {
         socialContainer.style.display = 'block';
 		document.querySelector(".chat-container").style.display = "none";
     });
+
 	openshop.addEventListener('click', function () {
 		openAppWindow()
 
@@ -325,7 +374,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	socket.emit('requestUserData', token.userData.id);
 	socket.emit('getUserFriends', token.userData.id);
 	socket.emit('getUserGroups', token.userData.id);
-	
+
 	lastContact = "chatbotai";
 	loadProfile("Dreikyzz AI", chatBoxAI.querySelector("img").src, "AI");
 

@@ -141,6 +141,32 @@ async function main() {
 			io.to(receiver).emit("chat receive", sender, content);
 		});
 
+		socket.on('getNonReadedMessages', async (userId) => {	
+			try {
+				const [rows] = await connection.execute(
+					'SELECT * FROM messages WHERE receiver = ? AND read_status = 0 ORDER BY timestamp ASC LIMIT 100',
+					[userId]
+				);
+
+				socket.emit("getNonReadedMessages", rows);
+			} catch (error) {
+				console.log(error);
+			}
+		});
+
+		socket.on('readMessages', async (sender, receiver) => {	
+			try {
+				query = await connection.execute(
+					'UPDATE messages SET read_status = 1 WHERE ((sender = ? AND receiver = ?) OR (sender = ? AND receiver = ?)) AND read_status = 0',
+					[sender, receiver, receiver, sender]
+				);
+
+
+			} catch (error) {
+				console.log(error);
+			}
+		});
+
 		socket.on('getUserFriends', async (userId) => {
 			try {
 				const [rows, fields] = await connection.execute(
@@ -180,7 +206,7 @@ async function main() {
 
 		socket.on('ai response', async (senderId, content) => {
 			try {
-				io.to("chatbotai" + senderId).emit("ai response", content);
+				socket.emit("ai response", content);
 			} catch (error) {
 				console.error(error.response);
 			}

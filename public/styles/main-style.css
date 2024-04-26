@@ -176,6 +176,19 @@
     user-select: none;
 }
 
+.contact-notification {
+    position: fixed;
+    width: 16px;
+    height: 16px;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    align-content: center;
+    border-radius: 8px;
+    background-color: #0093FF;
+}
+
 .contact-details {
     flex: 1; /* El elemento ocupa todo el espacio disponible */
     display: flex; /* Utilizamos flexbox para centrar verticalmente el texto */
