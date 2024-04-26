@@ -261,7 +261,7 @@ socket.on('chat receive', async (sender, content) => {
 			contactsNotifications[sender] = contactsNotifications[sender] + 1;
 		}
 	
-		if (contactsNotifications[sender] > 9) {
+		if (contactsNotifications[sender] > 9 || contactsNotifications[sender] == "9+1") {
 			contactsNotifications[sender] = "9+"
 		}
 
