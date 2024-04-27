@@ -75,6 +75,15 @@ function loadProfile(name, image, connected) {
 	chatImage.src = image;
 }
 
+function convertirURLaHTML(texto) {
+    // Expresión regular para encontrar URLs en el texto
+    var urlRegex = /(https?:\/\/[^\s]+)/g;
+    // Reemplazar las URLs encontradas por enlaces clickeables
+    return texto.replace(urlRegex, function(url) {
+        return '<a href="' + url + '" target="_blank">' + url + '</a>';
+    });
+}
+
 function createMessage(message) {
 	const sender = document.getElementById(message.sender);
 	const chatBox = document.querySelector(".messages-continer");
@@ -84,6 +93,8 @@ function createMessage(message) {
 	if (sender != null) {
 		messageImg = sender.querySelector("img").src;
 	}
+
+	messageContent = convertirURLaHTML(message.content);
 
 	var messageContainer = document.createElement("div");
 	messageContainer.classList.add('message-container');
@@ -97,7 +108,7 @@ function createMessage(message) {
 	newmessage.classList.add('message');
 
 	var parag = document.createElement("p");
-	parag.textContent = message.content;
+	parag.innerHTML = messageContent;
 	
 	var userIcon = document.createElement("img");
 	userIcon.classList.add("message-user-icon");
@@ -250,7 +261,6 @@ socket.on('chat receive', async (messageId, sender, content) => {
 
 		createMessage(message)
 	} else if (sender != token.userData.id) {
-		console.log("B");
 		const userContact = document.getElementById(sender);
 		let notification = userContact.querySelector(".contact-notification");
 

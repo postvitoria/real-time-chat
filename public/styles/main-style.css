@@ -468,6 +468,19 @@
     overflow-y: auto;
 }
 
+.banner {
+    margin-top: 5px;
+    padding: 5px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: none; /* Por defecto oculto */
+}
+.banner img {
+    max-width: 100%;
+    height: auto;
+}
+
 @keyframes fadeInDown {
     from {
       opacity: 0;
