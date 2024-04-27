@@ -87,6 +87,7 @@ function createMessage(message) {
 
 	var messageContainer = document.createElement("div");
 	messageContainer.classList.add('message-container');
+	messageContainer.id = message.id;
 
 	var messageName = document.createElement("span");
 	messageName.classList.add("message-user-name");
@@ -239,15 +240,17 @@ socket.on('loadMessages', async (messages) => {
 	});
 });
 
-socket.on('chat receive', async (sender, content) => {
-	if (lastContact == sender) {		
+socket.on('chat receive', async (messageId, sender, content) => {
+	if (lastContact == sender || token.userData.id == sender) {			
 		let message = []
+		message.id = messageId;
 		message.sender = sender;
 		message.content = content;
 		message.receiver = token.userData.id;
 
 		createMessage(message)
 	} else if (sender != token.userData.id) {
+		console.log("B");
 		const userContact = document.getElementById(sender);
 		let notification = userContact.querySelector(".contact-notification");
 
@@ -313,7 +316,7 @@ sendButton.addEventListener('click', (event) => {
 	message.content = input.value;
 	message.receiver = lastContact;
 
-	createMessage(message);
+	//createMessage(message);
 	socket.emit('chat message', message.sender, message.receiver, message.content);
 
 	input.value = "";
@@ -332,7 +335,7 @@ messageInput.addEventListener("keyup", function (event) {
 		message.content = messageInput.value;
 		message.receiver = lastContact;
 
-		createMessage(message);
+		//createMessage(message);
 		socket.emit('chat message', message.sender, message.receiver, message.content);
 		messageInput.value = "";
 

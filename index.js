@@ -4,6 +4,7 @@ const { join } = require('path'); // Cambiado de 'node:path' a 'path'
 const { Server } = require('socket.io');
 const mysql = require('mysql2/promise'); // Usando mysql2
 const bcrypt = require('bcrypt');
+const { v4: uuidv4 } = require('uuid');
 
 async function main() {
 	// Conexión a la base de datos MySQL
@@ -127,18 +128,22 @@ async function main() {
 		});
 
 		socket.on('chat message', async (sender, receiver, content) => {
-			let result;
-
+			const messageId = uuidv4(); // Generar UUID para el mensaje
+		
 			try {
-				result = await connection.execute(
-				'INSERT INTO messages (id, sender, receiver, content) VALUES (UUID(), ?, ?, ?)',
-				[sender, receiver, content]);
+				// Insertar datos en la tabla
+				await connection.execute(
+					'INSERT INTO messages (id, sender, receiver, content) VALUES (?, ?, ?, ?)',
+					[messageId, sender, receiver, content]
+				);
+		
+				// Emitir datos a través del socket
+				//socket.emit("chat receive", messageId, sender, content);
+				io.to(receiver).emit("chat receive", messageId, sender, content);
 			} catch (e) {
 				console.log(e);
 				return;
 			}
-
-			io.to(receiver).emit("chat receive", sender, content);
 		});
 
 		socket.on('getNonReadedMessages', async (userId) => {	
@@ -208,7 +213,7 @@ async function main() {
 			try {
 				socket.emit("ai response", content);
 			} catch (error) {
-				console.error(error.response);
+				console.error(error);
 			}
 		});
 
