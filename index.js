@@ -172,6 +172,17 @@ async function main() {
 			}
 		});
 
+		socket.on('readMessage', async (messageId) => {	
+			try {
+				query = await connection.execute(
+					'UPDATE messages SET read_status = 1 WHERE messages.id = ?',
+					[messageId]
+				);
+			} catch (error) {
+				console.log(error);
+			}
+		});
+
 		socket.on('getUserFriends', async (userId) => {
 			try {
 				const [rows, fields] = await connection.execute(

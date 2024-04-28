@@ -260,6 +260,7 @@ socket.on('chat receive', async (messageId, sender, content) => {
 		message.receiver = token.userData.id;
 
 		createMessage(message)
+		socket.emit("readMessage", message.id)
 	} else if (sender != token.userData.id) {
 		const userContact = document.getElementById(sender);
 		let notification = userContact.querySelector(".contact-notification");
@@ -321,14 +322,7 @@ sendButton.addEventListener('click', (event) => {
 		return;
 	}
 	
-	let message = []
-	message.sender = token.userData.id;
-	message.content = input.value;
-	message.receiver = lastContact;
-
-	//createMessage(message);
-	socket.emit('chat message', message.sender, message.receiver, message.content);
-
+	socket.emit('chat message', token.userData.id, lastContact, input.value);
 	input.value = "";
 });
 
@@ -340,17 +334,11 @@ messageInput.addEventListener("keyup", function (event) {
 			return;
 		}
 
-		let message = []
-		message.sender = token.userData.id;
-		message.content = messageInput.value;
-		message.receiver = lastContact;
-
-		//createMessage(message);
-		socket.emit('chat message', message.sender, message.receiver, message.content);
+		socket.emit('chat message', token.userData.id, lastContact, messageInput.value);
 		messageInput.value = "";
 
 		if (lastContact == "chatbotai") {
-			socket.emit("ai response", message.sender, message.content)
+			socket.emit("ai response", token.userData.id, messageInput.value)
 		}
 	}
 });
