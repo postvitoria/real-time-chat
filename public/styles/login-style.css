@@ -4,7 +4,9 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Quicksand', sans-serif;
+    font-family: Helvetica, Arial, sans-serif; /* Establece la fuente Helvetica como la primera opción */
+    user-select: none;
+    overflow: none;
 }
 
 body{
@@ -12,7 +14,13 @@ body{
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: #333;
+    /* background: #333; */
+    /* background: url('../media/img/login-background.jpg'); */
+    overflow: hidden;
+    background-image: url('../media/img/login-background2.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 section{
@@ -26,69 +34,105 @@ section{
 
 section .signin{
     position: absolute;
-    width: 400px;
-    background: #222;
+    width: 800px;
+    background: #282c34;
     z-index: 1000;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    grid-auto-flow: row dense;
+    grid-gap: 3rem;
     justify-content: center;
     align-items: center;
     padding: 40px;
     border-radius: 4px;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    animation: fadeInDown 0.5s forwards;
 }
 
-section .signin .content{
+section .signin .first-grid{
     position: relative;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 40px;
+    /* gap: 40px; */
 }
 
-section .signin .content h2{
-    font-size: 2em;
-    color: rgb(0, 159, 108);
-    text-transform: uppercase;
+section .signin .first-grid .login-title{
+    font-size: 1.75em;
+    color: #0093FF;
+    margin-bottom: 5px;
+    font-weight: bold;
+    /* text-transform: uppercase; */
 }
 
-section .signin .content .form{
+section .signin .first-grid .login-subtitle{
+    font-size: 13px;
+    color: #bbbbbb;
+    /* text-transform: uppercase; */
+}
+
+section .signin .first-grid .form{
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 20px;
 }
 
-.signin .content .form .message{
+.signin .first-grid .form .message{
     position: relative;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: rgb(0, 159, 108);
+    color: #0093FF;
     font-weight: bold;
 }
 
-section .signin .content .form .inputBx{
+section .signin .first-grid .form .inputBx{
     position: relative;
     width: 100%;
 }
 
-section .signin .content .form .inputBx input{
+section .signin .first-grid .form .inputBx span{
+    color: #bbbbbb;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+section .signin .first-grid .form .inputBx span:last-child {
+    color: #bbbbbb;
+    text-decoration: none;
+    text-transform: none;
+    font-size: 13px;
+    font-weight: normal;
+}
+
+section .signin .first-grid .form .inputBx input{
     position: relative;
     width: 100%;
-    background: #333;
+    background: #1f2126;
     border: none;
     outline: none;
-    padding: 25px 10px 7.5px;
+    padding: 10px;
     border-radius: 4px;
     color: #fff;
     font-weight: 500;
     font-size: 1em;
+    margin-top: 8px;
+    margin-bottom: 4px;
 }
 
-section .signin .content .form .inputBx i {
+section .signin .first-grid .form .inputBx a{
+    color: #0093FF;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+section .signin .first-grid .form .inputBx i {
     position: absolute;
     left: 0;
     padding: 15px 10px;
@@ -98,36 +142,81 @@ section .signin .content .form .inputBx i {
     pointer-events: none;
 }
 
-section .signin .content .form .inputBx input:focus ~i,
-section .signin .content .form .inputBx input:valid ~i{
+section .signin .first-grid .form .inputBx input:focus ~i,
+section .signin .first-grid .form .inputBx input:valid ~i{
     transform: translateY(-7.5px);
     font-size: 0.8em;
     color: #fff;
 }
 
-.signin .content .form .links{
+.signin .first-grid .form .links{
     position: relative;
     width: 100%;
     display: flex;
     justify-content: space-between;
 }
 
-.signin .content .form .links a{
-    color: rgb(0, 159, 108);
+.signin .first-grid .form .links a{
+    color: #0093FF;
     text-decoration: none;
 }
 
-.signin .content .form .links a:nth-child(2){
-    color: rgb(0, 159, 108);
+.signin .first-grid .form .links a:nth-child(2){
+    color: #0093FF;
     font-weight: 600;
 }
 
-.signin .content .form .inputBx input[type="submit"]{
+.signin .first-grid .form .inputBx input[type="submit"]{
     padding: 10px;
-    background: rgb(0, 159, 108);
-    color: #111;
+    background: #0093FF;
+    color: #282c34;
     font-weight: 600;
     font-size: 1.25em;
     letter-spacing: 0.05em;
     cursor: pointer;
+}
+
+section .signin .second-grid {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    grid-column-start: 2;
+    gap: 15px;
+}
+
+section .signin .second-grid img{
+    width: 175px;
+    height: 175px;
+}
+
+section .signin .second-grid .title {
+    font-size: 1.5em;
+    color: #bbbbbb;
+    margin-bottom: 5px;
+    font-weight: bold;
+    text-align: center;
+}
+
+section .signin .second-grid .subtitle{
+    font-size: 1em;
+    color: #bbbbbb;
+    text-align: center;
+}
+
+@keyframes fadeInDown {
+    0% {
+      transform: translateY(-200px);
+      opacity: 0;
+    }
+    50% {
+      transform: translateY(0);
+      transform: scale(0.95);
+      opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+    }
 }

@@ -13,6 +13,11 @@ body{
     align-items: center;
     min-height: 100vh;
     background: #333;
+    background-image: url('../media/img/login-background2.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    overflow: hidden;
 }
 
 section{
@@ -27,7 +32,7 @@ section{
 section .signin{
     position: absolute;
     width: 400px;
-    background: #222;
+    background: #282c34;
     z-index: 1000;
     display: flex;
     justify-content: center;
@@ -35,6 +40,7 @@ section .signin{
     padding: 40px;
     border-radius: 4px;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    animation: fadeInDown 0.5s forwards;
 }
 
 section .signin .content{
@@ -44,13 +50,14 @@ section .signin .content{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 40px;
+
 }
 
-section .signin .content h2{
-    font-size: 2em;
-    color: rgb(0, 159, 108);
-    text-transform: uppercase;
+section .signin .content .signup-title{
+    font-size: 1.75em;
+    color: #0093FF;
+    margin-bottom: 5px;
+    font-weight: bold;
 }
 
 section .signin .content .form{
@@ -66,8 +73,9 @@ section .signin .content .form{
     display: flex;
     justify-content: center;
     align-items: center;
-    color: rgb(0, 159, 108);
+    color: red;
     font-weight: bold;
+    font-size: 12px;
 }
 
 section .signin .content .form .inputBx{
@@ -75,17 +83,32 @@ section .signin .content .form .inputBx{
     width: 100%;
 }
 
+section .signin .content .form .inputBx span{
+    color: #bbbbbb;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+section .signin .content .form .inputBx a{
+    color: #0093FF;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+}
+
 section .signin .content .form .inputBx input{
     position: relative;
     width: 100%;
-    background: #333;
+    background: #1f2126;
     border: none;
     outline: none;
-    padding: 25px 10px 7.5px;
+    padding: 10px;
     border-radius: 4px;
     color: #fff;
     font-weight: 500;
     font-size: 1em;
+    margin-top: 8px;
 }
 
 section .signin .content .form .inputBx i {
@@ -113,21 +136,36 @@ section .signin .content .form .inputBx input:valid ~i{
 }
 
 .signin .content .form .links a{
-    color: rgb(0, 159, 108);
+    color: #0093FF;
     text-decoration: none;
 }
 
 .signin .content .form .links a:nth-child(2){
-    color: rgb(0, 159, 108);
+    color: #0093FF;
     font-weight: 600;
 }
 
 .signin .content .form .inputBx input[type="submit"]{
     padding: 10px;
-    background: rgb(0, 159, 108);
+    background: #0093FF;
     color: #111;
     font-weight: 600;
     font-size: 1.25em;
     letter-spacing: 0.05em;
     cursor: pointer;
+}
+
+@keyframes fadeInDown {
+    0% {
+      transform: translateY(-200px);
+      opacity: 0;
+    }
+    50% {
+      transform: translateY(0);
+      transform: scale(0.95);
+      opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+    }
 }

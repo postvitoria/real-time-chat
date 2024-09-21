@@ -9,29 +9,38 @@
         <title>Dreikyzz Login Page</title>
     </head>
 
-    <body>
+    <body>        
         <section>
             <div class="signin">
-                <div class="content">
-                    <h2>login</h2>
+                <div class="first-grid">
+                    <span class="login-title">Welcome back!</span>
+                    <span class="login-subtitle">We are very excited to see you again</span>
                     <form id="signinForm" class="form" method="post">
                         <span class="message"></span>
                         <div class="inputBx">
+                            <span>Username or email <span style="color: red;">*</span></span>
                             <input type="text" name="username" id="username" required>
-                            <i>Username</i>
                         </div>
                         <div class="inputBx">
+                            <span>Password <span style="color: red;">*</span></span>
                             <input type="password" name="password" id="password" required>
-                            <i>Password</i>
+                            <a href="recpasswd">Forgot your password?</a>
+                            <!-- <i>Password</i> -->
                         </div>
-                        <div class="links">
-                            <a href="recpasswd">Forgot passwd</a>
-                            <a href="signup">Signup</a>
-                        </div>
+                        <!-- <div class="links">
+                            <a href="recpasswd">Forgot your password?</a>
+                        </div> -->
                         <div class="inputBx">
-                            <input type="submit" value="Submit">
+                            <input type="submit" value="Login">
+                            <span>Need an account? <a href="signup">Register</a></span>
                         </div>
                     </form>
+                </div>
+
+                <div class="second-grid">
+                    <img src="media/img/qr.png" alt="">
+                    <span class="title">Login with QR</span>
+                    <span class="subtitle">Scan this with the <b>mobile application</b> to log in instantly</span>
                 </div>
             </div>
         </section>
@@ -51,9 +60,9 @@
                     return;
                 }
 
-                const username = document.getElementById('username').value;
-                const password = document.getElementById('password').value;
-                const notify   = document.querySelector('.message');
+                const username = document.getElementById('username');
+                const password = document.getElementById('password');
+                // const notify   = document.querySelector('.message');
 
                 try {
                     const response = await fetch('/login', {
@@ -61,14 +70,14 @@
                         headers: {
                             'Content-Type': 'application/json'
                         },
-                        body: JSON.stringify({ username: username, password: password })
+                        body: JSON.stringify({ username: username.value, password: password.value })
                     });
 
                     const message = await response.json();
                     submitted = true;
 
-                    notify.textContent = message["message"];
-                    await sleep(2500).then(function() {notify.textContent = ""; submitted = false});
+                    // notify.textContent = message["message"];
+                    // await sleep(2500).then(function() {notify.textContent = ""; submitted = false});
 
                     if (message.logged == true) {
                         const userData = {
@@ -78,6 +87,16 @@
 
                         localStorage.setItem('sessionToken', JSON.stringify(userData));
                         window.location.href = "/";
+                    } else {
+                        submitted = false;
+                        
+                        username.style.border = "1px solid red";
+                        password.style.border = "1px solid red";
+
+                        await sleep(2500).then(function() {
+                            username.style.border = "none";
+                            password.style.border = "none";
+                        });
                     }
                 } catch (error) {
                     console.log(error);

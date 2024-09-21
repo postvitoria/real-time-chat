@@ -1,6 +1,7 @@
 * {
     font-family: Helvetica, Arial, sans-serif; /* Establece la fuente Helvetica como la primera opción */
     overflow-x: hidden;
+    user-select: none;
 }
 
 .contacts-slidebar {
@@ -9,7 +10,7 @@
     width: 20%;
     height: 100%;
     position: absolute;
-    background-color: #ECECEC;
+    background-color: #1f2126;
     /* overflow-y: auto; */
 }
 
@@ -26,7 +27,6 @@
     border-radius: 50px;
     margin-right: 15px; /* Agregamos margen derecho para separar la imagen del nombre de usuario */
     margin-left: 25px;
-    user-select: none;
     cursor: pointer;
 }
 
@@ -46,7 +46,7 @@
 }
 
 .profile-self-desc {
-    color: #808080;
+    color: #bbbbbb;
     font-size: 15px; /* Tamaño de fuente para el nombre de usuario */
     max-width: 200px; /* Establece el ancho máximo del span */
     overflow: hidden; /* Oculta el texto que supere el ancho máximo */
@@ -70,7 +70,15 @@
     max-width: fit-content;
     margin-left: auto;
     margin-right: auto;
-    user-select: none;
+}
+
+.chat-buttons-container {
+    position: absolute;
+    display: flex;
+    height: 40px;
+    max-width: fit-content;
+    right: 20px;
+    align-items: center;
 }
 
 .profile-button {
@@ -114,8 +122,8 @@
     border: 2px solid transparent;
     border-radius: 20px;
     outline: none;
-    background-color: #f3f3f4;
-    color: #0d0c22;
+    background-color: #282c34;
+    color: #bbbbbb;
     transition: 0.3s ease;
 }
 
@@ -125,16 +133,17 @@
 
 .add-friend-input {
     width: 100%;
-    height: 40px;
+    height: 50px;
     line-height: 28px;
     padding: 0 1rem;
     padding-left: 2.5rem;
     border: 2px solid transparent;
-    border-radius: 20px;
+    border-radius: 5px;
     outline: none;
-    background-color: #f3f3f4;
-    color: #0d0c22;
+    background-color: #1f2126;
+    color: #bbbbbb;
     transition: 0.3s ease;
+    font-size: 18px;
 }
 
 .friends-input::placeholder {
@@ -163,8 +172,7 @@
 }
 
 .contact-item:hover {
-    background-color: #ccc;
-    transition: 0.5s;
+    background-color: #282c34;
     cursor: pointer;
 }
 
@@ -173,7 +181,7 @@
     height: 50px;
     border-radius: 25px;
     margin-right: 15px; /* Agrega margen derecho para separar la imagen del texto */
-    user-select: none;
+    
 }
 
 .contact-notification {
@@ -203,7 +211,7 @@
 }
 
 .contact-desc {
-    color: #808080;
+    color: #bbbbbb;
     overflow: hidden; /* Oculta el texto que supere el ancho máximo */
     max-width: 200px; /* Establece el ancho máximo del span */
     overflow: hidden; /* Oculta el texto que supere el ancho máximo */
@@ -225,6 +233,7 @@
     margin-left: 20%;
     position: absolute;
     overflow-y: hidden;
+    background-color: #282c34;
 }
 
 .messages-continer {
@@ -236,7 +245,7 @@
     position: relative;
     width: 100%;
     height: 100px;
-    border-bottom: 2px solid #f3f3f4;
+    border-bottom: 2px solid #1f2126;
     align-items: center;
     display: flex; /* Utilizamos flexbox para centrar verticalmente los elementos */
     align-items: center; /* Centramos verticalmente los elementos */
@@ -258,6 +267,7 @@
     overflow: hidden; /* Oculta el texto que supere el ancho máximo */
     text-overflow: ellipsis; /* Muestra puntos suspensivos (...) para el texto que se ha cortado */
     white-space: nowrap; /* Evita que el texto se divida en múltiples líneas */
+    color: #bbbbbb;
 }
 
 .chat-header-status {
@@ -278,7 +288,7 @@
     display: flex; /* Para habilitar el uso de flexbox */
     justify-content: center; /* Para centrar horizontalmente */
     align-items: center; /* Para centrar verticalmente */
-    user-select: none;
+    
 }
 
 .chat-container footer {
@@ -288,55 +298,70 @@
     height: 13%;
     overflow-x: hidden;
     overflow-y: hidden;
-    border-top: 2px solid #f3f3f4;
+    border-top: 2px solid #1f2126;
 }
 
 /* Message input */
 
 .message-group {
+    position: relative;
     margin: auto;
     display: flex;
-    line-height: 28px;
     align-items: center;
-    position: relative;
-    max-width: 550px;
+    max-width: 95%;
     margin-top: 25px;
 }
 
 .message-input {
     width: 100%;
-    height: 40px;
+    height: 50px;
     line-height: 28px;
-    padding: 0 1rem;
-    padding-left: 3rem;
+    padding-left: 3rem; /* Espacio para el icono izquierdo */
+    padding-right: 3rem; /* Espacio para el icono derecho */
     border: 2px solid transparent;
-    border-radius: 20px;
+    border-radius: 5px;
     outline: none;
-    background-color: #f3f3f4;
-    color: #0d0c22;
-    transition: 0.3s ease;
+    background-color: #1f2126;
+    color: #bbbbbb;
 }
 
 .message-input::placeholder {
     color: #9e9ea7;
 }
 
-.message-input-icon-left {
+.message-input-icon {
     position: absolute;
-    left: 1rem;
-    color: #9e9ea7;
-    width: 1.2rem;
-    height: 1.2rem;
-    cursor: pointer;
-}
-
-.message-input-icon-right {
-    position: absolute;
-    right: 3rem;
-    color: #9e9ea7;
+    color: #bbbbbb;
     width: 1.4rem;
     height: 1.4rem;
     cursor: pointer;
+}
+
+.left-icon {
+    left: 1rem; /* Ajusta este valor según el padding de tu input */
+}
+
+.right-icon {
+    right: 1rem; /* Ajusta este valor según el padding de tu input */
+}
+
+/* Elimina la cruz (clear button) en los navegadores Webkit (Chrome, Safari, etc.) */
+.message-input::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/* Elimina la cruz en Firefox */
+.message-input[type="search"]::-ms-clear {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+ion-icon[name="happy"]:hover {
+    transform: scale(1.15);
+    transition: 0.3s;
+    color: #ecc63f;
 }
 
 /* End Message Input */
@@ -346,7 +371,7 @@
     margin: 2px 2px; /* Ajuste aquí para un espaciado uniforme */
     transition: 1s;
     clear: both; /* Agregado para evitar la disposición en línea */
-    animation: fadeInUp 0.5s ease-in-out forwards;
+    /* animation: fadeInUp 0.5s ease-in-out forwards; */
 }
 
 .message-container:first-child {
@@ -360,7 +385,6 @@
     margin-right: 0; 
     margin-left: 20px;
     float: left;
-    user-select: none;
 }
 
 .message {
@@ -373,14 +397,15 @@
     word-wrap: break-word;
     display:inline-block;
     opacity: 0;
-    animation: fadeInUp 0.5s ease-in-out forwards;
+    animation: fadeInUp 0s forwards;
 }
 
 .message p {
     color: white;
     margin: 0;
     font-size: 14px;
-    max-width: 250px;
+    max-width: 450px;
+    user-select: text;
 }
 
 .message-container.yours .message {
@@ -389,11 +414,28 @@
     float: right;
 }
 
-.send-button {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+.social-send-button {
+    width: 155px;
+    height: 30px;
     background-color: #0093FF;
+    border-radius: 5px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex; /* Para habilitar el uso de flexbox */
+    justify-content: center; /* Para centrar horizontalmente */
+    align-items: center; /* Para centrar verticalmente */
+    cursor: pointer;
+    color: white;
+    font-size: 14px;
+}
+
+.send-button {
+    width: 35px;
+    height: 35px;
+    background-color: #0093FF;
+    border-radius: 35px;
     position: absolute;
     right: 0;
     top: 50%;
@@ -402,6 +444,8 @@
     justify-content: center; /* Para centrar horizontalmente */
     align-items: center; /* Para centrar verticalmente */
     cursor: pointer;
+    color: white;
+    font-size: 14px;
 }
 
 .send-button ion-icon{
@@ -415,7 +459,7 @@
     position: absolute;
     width: 20%;
     height: 100%;
-    background-color: #ECECEC;
+    background-color: #1f2126;
 }
 
 .profile-container header {
@@ -424,7 +468,6 @@
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    user-select: none;
 }
 
 .right-profile-avatar {
@@ -442,18 +485,84 @@
     width: 60%;
     height: 100%;
     margin-left: 20%;
-    position: absolute;
     overflow-y: hidden;
+    background-color: #282c34;
 }
 
 .social-window header {
     position: relative;
     width: 100%;
-    height: 100px;
-    border-bottom: 2px solid #f3f3f4;
+    height: 55px;
+    background-color: #1f2126;
     align-items: center;
     display: flex; /* Utilizamos flexbox para centrar verticalmente los elementos */
     align-items: center; /* Centramos verticalmente los elementos */
+}
+
+.social-window-title {
+    display: flex;
+    font-weight: bold;
+    font-size: 22px;
+    margin: 20px;
+    margin-top: 40px;
+    color: #bbbbbb;
+    text-decoration: underline;
+}
+
+.social-window-user {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 75px;
+    overflow-y: auto;
+    padding-right: 15px; /* Espacio para el icono a la derecha */
+    padding: 5px;
+}
+
+.social-window-user img {
+    width: 60px;
+    height: 60px;
+    border-radius: 60px;
+    margin-left: 15px;
+}
+
+.social-window-user-info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px; /* Espacio entre la imagen y el texto */
+}
+
+.social-window-username {
+    color: #bbbbbb;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.social-window-status {
+    color: #bbbbbb;
+    overflow: hidden; /* Oculta el texto que supere el ancho máximo */
+    max-width: 200px; /* Establece el ancho máximo del span */
+    text-overflow: ellipsis; /* Muestra puntos suspensivos (...) para el texto que se ha cortado */
+    white-space: nowrap; /* Evita que el texto se divida en múltiples líneas */
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.social-window-icons {
+    margin-left: auto; /* Empuja los iconos a la derecha */
+    display: flex; /* Flexbox para alinear los iconos horizontalmente */
+    gap: 10px; /* Espacio entre los iconos */
+}
+
+.social-window-icons ion-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 35px;
+    background-color: #18181888; /* Puedes cambiar el color o agregar una imagen de fondo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
 }
 
 .shop-window {
@@ -466,6 +575,7 @@
     margin-left: 20%;
     position: absolute;
     overflow-y: auto;
+    background-color: #282c34;
 }
 
 .banner {
@@ -476,9 +586,282 @@
     border-radius: 5px;
     display: none; /* Por defecto oculto */
 }
+
 .banner img {
     max-width: 100%;
     height: auto;
+    /* background-image: url('../media/img/login-background.jpg'); */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.context-menu {
+    background-color: #181818;
+    border: 2px solid #1f2126;
+    border-radius: 5px;
+    padding: 5px;
+    width: 12%;
+}
+
+.context-menu li {
+    cursor: pointer;
+    padding: 5px;
+    color: #bbbbbb;
+}
+
+.context-menu li:hover {
+    color: white;
+    background-color: #0093FF;
+}
+
+.contact-profile-showcase {
+    display: none;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    width: 65vh;
+    height: 70vh;
+    border-radius: 5px;
+    background: linear-gradient(to top, #1f2126 75%, transparent 25%), url('https://i.pinimg.com/originals/f9/f7/18/f9f718f50c7016b384de139b0e9a835e.gif');
+    background-repeat: no-repeat;
+    border: 5px solid #1f2126;
+    z-index: 2;
+    animation: zoomIn 0.35s forwards;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow: auto;
+}
+
+.contact-profile-showcase img {
+    width: 100px;
+    height: 100px;
+    margin-top: 15%;
+    margin-left: 15px;
+    border-radius: 60px;
+    border: 5px solid #1f2126;
+}
+
+.showcase-username {
+    color: #bbbbbb;
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 15px;
+    margin-top: 15px;
+    overflow: hidden;
+}
+
+.showcase-description {
+    color: #bbbbbb;
+    font-size: 15px;
+    /* margin-left: 7.5px; */
+    margin-top: 15px;
+    width: 60vh; /* Establece el ancho máximo del span */
+    overflow: hidden; /* Oculta el texto que supere el ancho máximo */
+    text-overflow: ellipsis; /* Muestra puntos suspensivos (...) para el texto que se ha cortado */
+    user-select: text;
+    text-align: justify;
+    align-self: center;
+    background-color: #282c34;
+    padding: 10px;
+}
+
+.showcase-description a {
+    color: #0093FF;
+}
+
+.showcase-status {
+    color: #bbbbbb;
+    font-size: 15px;
+    font-weight: normal;
+    margin-top: 5px;
+    margin-left: 15px;
+}
+
+.showcase-msg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #bbbbbb;
+    position: absolute;
+    width: 100px;
+    height: 35px;
+    background-color: #282c34;
+    right: 10px;
+    top: 27%;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.showcase-msg ion-icon {
+    font-size: 1rem;
+    color: #bbbbbb;
+    margin-right: 5px; /* Espacio entre el icono y el texto */
+}
+
+.showcase-options {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #bbbbbb;
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    border-radius: 35px;
+    background-color: #18181888;
+    color: #bbbbbb;
+    cursor: pointer;
+    right: 10px;
+    top: 10px;
+}
+
+.showcase-conections {
+    display: flex;
+    border: 1px solid #bbbbbb93;
+    border-radius: 5px;
+    margin: auto;
+    width: 60vh; /* Establece el ancho máximo del span */
+    height: 15vh;
+    overflow: hidden; /* Oculta el texto que supere el ancho máximo */
+    text-overflow: ellipsis; /* Muestra puntos suspensivos (...) para el texto que se ha cortado */
+    user-select: text;
+    text-align: justify;
+    align-self: center;
+    padding: 10px;
+}
+
+.showcase-conection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #bbbbbb;
+    width: 100px;
+    height: 35px;
+    background-color: #282c34;
+    right: 10px;
+    top: 27%;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.showcase-conection ion-icon {
+    font-size: 1rem;
+    color: #bbbbbb;
+    margin-right: 5px; /* Espacio entre el icono y el texto */
+}
+
+.contact-profile-showcase .member-title {
+    color: #bbbbbb;
+    font-size: 15px;
+    margin-top: 5px;
+    margin-left: 15px;
+    font-weight: bold;
+}
+
+.contact-profile-showcase .connection-title {
+    color: #bbbbbb;
+    font-size: 15px;
+    margin-top: 15px;
+    margin-left: 15px;
+    font-weight: bold;
+}
+
+.contact-profile-showcase .member-value {
+    color: #bbbbbb;
+    font-size: 15px;
+    margin-top: 2px;
+    margin-left: 15px;
+    font-weight: normal;
+}
+
+.small-context-menu {
+    display: none;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15%;
+    width: 65vh;
+    height: 25vh;
+    border-radius: 5px;
+    background: linear-gradient(to bottom, #282c34 65%, #1f2126 35%);
+    border: 5px solid #1f2126;
+    z-index: 2;
+    animation: zoomIn 0.35s forwards;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.small-context-menu span {
+    color: #bbbbbb;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+.small-context-menu p {
+    color: #bbbbbb;
+    font-size: 16px;
+    /* margin-left: 7.5px; */
+    width: 60vh; /* Establece el ancho máximo del span */
+    overflow: hidden; /* Oculta el texto que supere el ancho máximo */
+    text-overflow: ellipsis; /* Muestra puntos suspensivos (...) para el texto que se ha cortado */
+    text-align: justify;
+    align-self: center;
+    background-color: #282c34;
+    padding: 10px;
+}
+
+.delete-confirm {
+    display: flex;
+    position: absolute;
+    width: 75px;
+    height: 30px;
+    background-color: #c63c3c;
+    border-radius: 5px;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    bottom: 15px;
+    right: 15px;
+    cursor: pointer;
+}
+
+.delete-cancel {
+    display: flex;
+    position: absolute;
+    color: #bbbbbb;
+    bottom: 20px;
+    right: 120px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+@keyframes zoomIn {
+    0% {
+        transform: scale(0);
+    }
+    50% {
+        transform: scale(1.25);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes zoomOut {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.25);
+    }
+    100% {
+        transform: scale(0);
+    }
 }
 
 @keyframes fadeInDown {
@@ -518,7 +901,7 @@
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #888;
+    background: #bbbbbb;
     border-radius: 50px;
     background-color: #0093FF;
 }

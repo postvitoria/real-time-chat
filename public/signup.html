@@ -14,31 +14,36 @@
         <section>
             <div class="signin">
                 <div class="content">
-                    <h2>signup</h2>
+                    <span class="signup-title">Create account</span>
                     <form id="signupForm" class="form" method="post">
                         <span class="message"></span>                      
                         <div class="inputBx">
+                            <span>Username <span style="color: red;">*</span></span>
                             <input type="text" name="username" id="username" required>
-                            <i>Username</i>
+                            <!-- <i>Username</i> -->
                         </div>
                         <div class="inputBx">
+                            <span>Email <span style="color: red;">*</span></span>
                             <input type="text" name="email" id="email" required>
-                            <i>Email</i>
+                            <!-- <i>Email</i> -->
                         </div>
                         <div class="inputBx">
+                            <span>Password <span style="color: red;">*</span></span>
                             <input type="password" name="password" id="password" required>
-                            <i>Password</i>
+                            <!-- <i>Password</i> -->
                         </div>
                         <div class="inputBx">
+                            <span>Repeat password <span style="color: red;">*</span></span>
                             <input type="password" name="rpassword" id="rpassword" required>
-                            <i>Repeat Password</i>
+                            <!-- <i>Repeat Password</i> -->
                         </div>
-                        <div class="links">
+                        <!-- <div class="links">
                             <a href="#">Support</a>
                             <a href="login">Login</a>
-                        </div>
+                        </div> -->
                         <div class="inputBx">
                             <input type="submit" value="Submit">
+                            <a href="login">Already have an account?</a>
                         </div>
                     </form>
                 </div>
@@ -59,6 +64,8 @@
                 const password = document.getElementById('password').value;
                 const rpassword = document.getElementById('rpassword').value;
                 const message = document.querySelector('.message');
+                var format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+
 
                 // Validar la contraseña
                 if (password.length < 8 || !/[A-Z]/.test(password) || !/\d/.test(password)) {
@@ -70,6 +77,12 @@
                 // Verificar si las contraseñas coinciden
                 if (password !== rpassword) {
                     message.textContent = "Passwords do not match";
+                    event.preventDefault(); // Evitar que el formulario se envíe
+                    return;
+                }
+
+                if (format.test(username)) {
+                    message.textContent = "Username cannot contain special values";
                     event.preventDefault(); // Evitar que el formulario se envíe
                     return;
                 }

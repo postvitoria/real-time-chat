@@ -1,12 +1,46 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="styles/main-style.css">
-    <title>Dreikyzz Chat</title>
-</head>
-<body>
-	<div class="main-chat-container">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="styles/main-style.css">
+		<title>Dreikyzz Chat</title>
+	</head>
+	
+	<body>
+		<div class="contact-profile-showcase">
+			<div class="showcase-options"><ion-icon name="ellipsis-vertical"></ion-icon></div>
+			<img src="media/img/default.jpg">
+			<div class="showcase-msg"><ion-icon name="chatbubble"></ion-icon> Message</div>
+			<span class="showcase-username">Username</span>
+			<span class="showcase-status">Status sample</span>
+			<p class="showcase-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+			<span class="member-title">Member since</span>
+			<span class="member-value">24 jun 2018</span>
+
+			<span class="connection-title" style="margin-bottom: 5px;">Connections</span>
+			<div class="showcase-conections">
+				<div class="showcase-conection"><ion-icon name="logo-twitch"></ion-icon> Twitch</div>
+			</div>
+		</div>
+
+		<div class="small-context-menu">
+			<span class="delete-title"> Delete Mondonguito?</span>
+			<p>Are you sure you want to permanently remove dreikyzz from your contacts?</p>
+			<div class="delete-confirm">Confirm</div>
+			<div class="delete-cancel">Cancel</div>
+		</div>
+
+		<ul id="context-menu" class="context-menu" style="display:none; position:absolute; z-index:1000;">
+			<li>View profile</li>
+			<li>Delete friend</li>
+			<li>Block</li>
+		</ul>
+
+		<ul id="context-menu-showcase" class="context-menu" style="display:none; position:absolute; z-index:1000;">
+			<li>Delete friend</li>
+			<li>Block</li>
+		</ul>
+
 		<div class="contacts-slidebar">
 			<header>
 				<img class="profile-self-img" src="media/img/default.jpg">
@@ -17,10 +51,11 @@
 					<span class="profile-self-desc">Aqui chilli'n</span>
 				</div>
 			</header>
-	
+
 			<div class="profile-buttons-container">
 				<ion-icon name="gift-outline" class="profile-button" id="open-shop-button"></ion-icon>
-				<ion-icon name="person-outline" class="profile-button" id="add-friend-button"></ion-icon>
+				<!-- <ion-icon name="person-outline" class="profile-button" id="add-friend-button"></ion-icon> -->
+				<ion-icon name="person-add-outline" class="profile-button" id="add-friend-button"></ion-icon>
 				<ion-icon name="settings-outline" class="profile-button"></ion-icon>
 			</div>
 
@@ -37,7 +72,7 @@
 			</div>
 			
 			<ul class="contact-list">
-				<li class="contact-item" id="chatbotai"> 
+				<!-- <li class="contact-item" id="chatbotai"> 
 					<img src="https://avatarfiles.alphacoders.com/368/368659.jpeg">
 					
 					<div class="contact-details">
@@ -45,10 +80,9 @@
 						<span class="contact-desc">Welcome! Im here to help you! :D</span>
 					</div>
 
-					<!-- <div style="position: relative; width: 15px; height: 15px; border-radius: 20px; background-color: #0093FF; color: white; font-size: 12px; text-align: center;">1</div>
-					<ion-icon class="contact-icon" name="ellipsis-vertical-outline"></ion-icon> -->
-				</li>
-				<!-- Resto de los elementos de lista -->
+					<div style="position: relative; width: 15px; height: 15px; border-radius: 20px; background-color: #0093FF; color: white; font-size: 12px; text-align: center;">1</div>
+					<ion-icon class="contact-icon" name="ellipsis-vertical-outline"></ion-icon>
+				</li> -->
 			</ul>			
 		</div>
 
@@ -57,6 +91,12 @@
 				<img src="https://avatarfiles.alphacoders.com/368/368659.jpeg" class="chat-header-img">
 				<span class="chat-header-name">Dreikyzz AI</span>
 				<div class="chat-header-status-ai" id="ai-status">AI</div>
+				
+				<div class="chat-buttons-container">
+					<ion-icon name="call-outline" class="profile-button" id="open-shop-button"></ion-icon>
+					<ion-icon name="videocam-outline" class="profile-button"></ion-icon>
+					<ion-icon name="person-outline" class="profile-button" id="add-friend-button"></ion-icon>
+				</div>
 			</header>
 
 			<div class="messages-continer">
@@ -65,48 +105,47 @@
 
 			<footer>
 				<div class="message-group">
-					<ion-icon name="attach-outline" class="message-input-icon-left"></ion-icon>
-					<ion-icon name="happy-outline" class="message-input-icon-right"></ion-icon>
-					
+					<ion-icon name="attach-outline" class="message-input-icon left-icon"></ion-icon>
 					<input class="message-input" type="search" placeholder="Write a message">
-					
-					<div class="send-button">
-						<ion-icon name="send"></ion-icon>
-					</div>
+					<ion-icon name="happy" class="message-input-icon right-icon"></ion-icon>
 				</div>
 			</footer>
 		</div>
 
 		<div class="profile-container">
-			<!-- <header>
-				<img class="right-profile-avatar" src="https://i.pinimg.com/564x/91/3c/d8/913cd83e858388ae4c38be5c73952cd3.jpg">
-				<span class="right-profile-username">Tupu</span>
-				<span class="right-profile-status">Tamadre</span>
-			</header> -->
+
 		</div>
-	</div>
 
-	<div class="social-window">
-		<header>
+		<div class="social-window">
+			<header>
 
-		</header>
+			</header>
 
-		<div class="add-friend-group">				
-			<input class="add-friend-input" type="search" placeholder="Search user by their username">
-			
-			<div class="send-button">
-				<ion-icon name="send"></ion-icon>
+			<div class="add-friend-group">				
+				<input class="add-friend-input" type="search" placeholder="Search user by their username">
+				
+				<div class="social-send-button">Send friend request</div>
 			</div>
+
+			<span class="social-window-title">Friend Requests</span>
+
+			<div class="social-window-container">
+
+			</div>
+
+			<!-- <div class="social-window-user">
+				<img src="media/img/default.jpg" alt="">
+				<span class="social-window-username">Mondonguito</span>
+			</div> -->
 		</div>
-	</div>
 
-	<div class="shop-window">
+		<div class="shop-window">
 
-	</div>
+		</div>
 
-	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-	<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-	<script src="/socket.io/socket.io.js"></script>
-	<script src="app.js"></script>
+		<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+		<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="app.js"></script>
 	</body>
 </html>

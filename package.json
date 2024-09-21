@@ -12,6 +12,7 @@
         "axios": "^1.6.8",
         "bcrypt": "^5.1.1",
         "consolidate": "^1.0.3",
+        "dotenv": "^16.4.5",
         "express": "^4.19.1",
         "mustache": "^4.2.0",
         "mysql2": "^3.9.2",
