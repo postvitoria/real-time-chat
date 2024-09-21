@@ -7,5 +7,6 @@ A simple chat, with advanced features such as adding contacts, groups, sending m
         <h2>Login</h2>
         <img src="https://i.imgur.com/dE6rQXu.png">
         <h2>Main Page</h2>
+        <img src="https://i.imgur.com/8en7Jq1.png">
     </body>
 </html>
