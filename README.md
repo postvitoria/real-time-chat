@@ -3,6 +3,9 @@ A simple chat, with advanced features such as adding contacts, groups, sending m
 
 <html> 
     <body>
-        <h1>PRUEBA HTML</h1>
+        <h1>Preview</h1>
+        <h2>Login</h2>
+        <img src="https://imgur.com/dE6rQXu">
+        <h2>Main Page</h2>
     </body>
 </html>
