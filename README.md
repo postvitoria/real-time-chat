@@ -1,4 +1,4 @@
-A simple chat, with advanced features such as adding contacts, groups, sending messages and much more. Made with nodejs and native javascript
+A simple chat, with advanced features such as adding contacts, groups, sending messages and much more. Made with nodejs and native javascript. This app can be built with electron to desktop app.
 
 
 <html> 
