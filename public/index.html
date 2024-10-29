@@ -7,7 +7,7 @@
 	</head>
 	
 	<body>
-		<div class="contact-profile-showcase">
+		<!-- <div class="contact-profile-showcase">
 			<div class="showcase-options"><ion-icon name="ellipsis-vertical"></ion-icon></div>
 			<img src="media/img/default.jpg">
 			<div class="showcase-msg"><ion-icon name="chatbubble"></ion-icon> Message</div>
@@ -21,14 +21,14 @@
 			<div class="showcase-conections">
 				<div class="showcase-conection"><ion-icon name="logo-twitch"></ion-icon> Twitch</div>
 			</div>
-		</div>
+		</div> -->
 
-		<div class="small-context-menu">
+		<!-- <div class="small-context-menu">
 			<span class="delete-title"> Delete Mondonguito?</span>
 			<p>Are you sure you want to permanently remove dreikyzz from your contacts?</p>
 			<div class="delete-confirm">Confirm</div>
 			<div class="delete-cancel">Cancel</div>
-		</div>
+		</div> -->
 
 		<ul id="context-menu" class="context-menu" style="display:none; position:absolute; z-index:1000;">
 			<li>View profile</li>
@@ -41,80 +41,84 @@
 			<li>Block</li>
 		</ul>
 
-		<div class="contacts-slidebar">
-			<header>
-				<img class="profile-self-img" src="media/img/default.jpg">
-				<!-- <div class="profile-self-status"></div> -->
 
-				<div class="profile-details">
-					<span class="profile-self-username">Johnny</span>
-					<span class="profile-self-desc">Aqui chilli'n</span>
-				</div>
-			</header>
 
-			<div class="profile-buttons-container">
-				<ion-icon name="gift-outline" class="profile-button" id="open-shop-button"></ion-icon>
-				<!-- <ion-icon name="person-outline" class="profile-button" id="add-friend-button"></ion-icon> -->
-				<ion-icon name="person-add-outline" class="profile-button" id="add-friend-button"></ion-icon>
-				<ion-icon name="settings-outline" class="profile-button"></ion-icon>
-			</div>
-
-			<div class="group">
-				<svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
-					<g>
-						<path
-							d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"
-						></path>
-					</g>
-				</svg>
-
-				<input class="input" type="search" placeholder="Search Contact" oninput="filterContacts()">
-			</div>
-			
-			<ul class="contact-list">
-				<!-- <li class="contact-item" id="chatbotai"> 
-					<img src="https://avatarfiles.alphacoders.com/368/368659.jpeg">
-					
-					<div class="contact-details">
-						<span class="contact-name">Dreikyzz AI</span>
-						<span class="contact-desc">Welcome! Im here to help you! :D</span>
+		<div class="main-container">
+			<div class="contacts-slidebar">
+				<header>
+					<img class="profile-self-img" src="media/img/default.jpg">
+					<!-- <div class="profile-self-status"></div> -->
+	
+					<div class="profile-details">
+						<span class="profile-self-username">Johnny</span>
+						<span class="profile-self-desc">Aqui chilli'n</span>
 					</div>
-
-					<div style="position: relative; width: 15px; height: 15px; border-radius: 20px; background-color: #0093FF; color: white; font-size: 12px; text-align: center;">1</div>
-					<ion-icon class="contact-icon" name="ellipsis-vertical-outline"></ion-icon>
-				</li> -->
-			</ul>			
-		</div>
-
-		<div class="chat-container">
-			<header>
-				<img src="https://avatarfiles.alphacoders.com/368/368659.jpeg" class="chat-header-img">
-				<span class="chat-header-name">Dreikyzz AI</span>
-				<div class="chat-header-status-ai" id="ai-status">AI</div>
-				
-				<div class="chat-buttons-container">
-					<ion-icon name="call-outline" class="profile-button" id="open-shop-button"></ion-icon>
-					<ion-icon name="videocam-outline" class="profile-button"></ion-icon>
-					<ion-icon name="person-outline" class="profile-button" id="add-friend-button"></ion-icon>
+				</header>
+	
+				<div class="profile-buttons-container">
+					<ion-icon name="gift-outline" class="profile-button" id="open-shop-button"></ion-icon>
+					<!-- <ion-icon name="person-outline" class="profile-button" id="add-friend-button"></ion-icon> -->
+					<ion-icon name="person-add-outline" class="profile-button" id="add-friend-button"></ion-icon>
+					<ion-icon name="settings-outline" class="profile-button"></ion-icon>
 				</div>
-			</header>
-
-			<div class="messages-continer">
-
+	
+				<div class="group">
+					<svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
+						<g>
+							<path
+								d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"
+							></path>
+						</g>
+					</svg>
+	
+					<input class="input" type="search" placeholder="Search Contact" oninput="filterContacts()">
+				</div>
+				
+				<ul class="contact-list">
+					<!-- <li class="contact-item" id="chatbotai"> 
+						<img src="https://avatarfiles.alphacoders.com/368/368659.jpeg">
+						
+						<div class="contact-details">
+							<span class="contact-name">Dreikyzz AI</span>
+							<span class="contact-desc">Welcome! Im here to help you! :D</span>
+						</div>
+	
+						<div style="position: relative; width: 15px; height: 15px; border-radius: 20px; background-color: #0093FF; color: white; font-size: 12px; text-align: center;">1</div>
+						<ion-icon class="contact-icon" name="ellipsis-vertical-outline"></ion-icon>
+					</li> -->
+				</ul>			
 			</div>
 
-			<footer>
-				<div class="message-group">
-					<ion-icon name="attach-outline" class="message-input-icon left-icon"></ion-icon>
-					<input class="message-input" type="search" placeholder="Write a message">
-					<ion-icon name="happy" class="message-input-icon right-icon"></ion-icon>
+			<div class="chat-container">
+				<header>
+					<img src="https://avatarfiles.alphacoders.com/368/368659.jpeg" class="chat-header-img">
+					<span class="chat-header-name">Dreikyzz AI</span>
+					<div class="chat-header-status-ai" id="ai-status">AI</div>
+					
+					<div class="chat-buttons-container">
+						<ion-icon name="call-outline" class="profile-button" id="open-shop-button"></ion-icon>
+						<ion-icon name="videocam-outline" class="profile-button"></ion-icon>
+						<ion-icon name="person-outline" class="profile-button" id="add-friend-button"></ion-icon>
+					</div>
+				</header>
+	
+				<div class="messages-continer">
+	
 				</div>
-			</footer>
+	
+				<footer>
+					<div class="message-group">
+						<!-- <ion-icon name="attach-outline" class="message-input-icon left-icon"></ion-icon> -->
+						<input class="message-input" type="search" placeholder="Write a message">
+						<!-- <ion-icon name="happy" class="message-input-icon right-icon"></ion-icon> -->
+					</div>
+				</footer>
+			</div>
 		</div>
 
-		<div class="profile-container">
+		<!-- <div class="profile-container">
 
-		</div>
+		</div> -->
 
 		<div class="social-window">
 			<header>
