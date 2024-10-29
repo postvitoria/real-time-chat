@@ -28,12 +28,12 @@ function openAppWindow() {
 		
 	if (socialWindow != null) {
 		socialWindow.style.display = 'none';
-		document.querySelector(".chat-container").style.display = "block";
+		document.querySelector(".chat-container").style.display = "flex";
 	}
 
 	if (shopWindow != null) {
 		shopWindow.style.display = 'none';
-		document.querySelector(".chat-container").style.display = "block";
+		document.querySelector(".chat-container").style.display = "flex";
 	}
 }
 
