@@ -22,22 +22,24 @@ body{
 
 section{
     position: absolute;
-    width: 100vh;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px;
 }
 
 section .signin{
-    position: absolute;
-    width: 400px;
+    position: relative;
+    width: 90%;
+    max-width: 400px;
     background: #282c34;
     z-index: 1000;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 40px;
+    padding: 20px;
     border-radius: 4px;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
     animation: fadeInDown 0.5s forwards;
@@ -50,21 +52,21 @@ section .signin .content{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-
 }
 
 section .signin .content .signup-title{
-    font-size: 1.75em;
+    font-size: 1.5em;
     color: #0093FF;
     margin-bottom: 5px;
     font-weight: bold;
+    text-align: center;
 }
 
 section .signin .content .form{
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 20px;
 }
 
 .signin .content .form .message{
@@ -167,5 +169,19 @@ section .signin .content .form .inputBx input:valid ~i{
     }
     100% {
         transform: scale(1);
+    }
+}
+
+@media (min-width: 768px) {
+    section .signin {
+        padding: 40px;
+    }
+
+    section .signin .content .signup-title {
+        font-size: 1.75em;
+    }
+
+    section .signin .content .form {
+        gap: 25px;
     }
 }

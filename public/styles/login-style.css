@@ -25,28 +25,37 @@ body{
 
 section{
     position: absolute;
-    width: 100vh;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px;
 }
 
 section .signin{
-    position: absolute;
-    width: 800px;
+    position: relative;
+    width: 100%;
+    max-width: 800px;
     background: #282c34;
     z-index: 1000;
     display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    grid-auto-flow: row dense;
-    grid-gap: 3rem;
+    grid-template-columns: 1fr;
+    grid-gap: 1.5rem;
     justify-content: center;
     align-items: center;
-    padding: 40px;
+    padding: 20px;
     border-radius: 4px;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
     animation: fadeInDown 0.5s forwards;
+}
+
+@media (min-width: 768px) {
+    section .signin {
+        grid-template-columns: 1.5fr 1fr;
+        grid-gap: 3rem;
+        padding: 40px;
+    }
 }
 
 section .signin .first-grid{
@@ -183,8 +192,13 @@ section .signin .second-grid {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    grid-column-start: 2;
     gap: 15px;
+}
+
+@media (min-width: 768px) {
+    section .signin .second-grid {
+        grid-column-start: 2;
+    }
 }
 
 section .signin .second-grid img{
